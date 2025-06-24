@@ -29,6 +29,7 @@ body {
   font-weight: bold;
   font-size: 1.2em;
   color: #ff5722;
+  font-family: "Dancing Script", cursive;
 }
 
 .nav-links a,
@@ -49,8 +50,16 @@ body {
 }
 
 .clock {
-  font-weight: bold;
-  color: #555;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: default;
+  z-index: 1001;
+
+  position: fixed; /* agar tetap terlihat saat scroll */
+  bottom: 10px;
+  left: 10px;
 }
 
 /* Hero section */
@@ -107,6 +116,7 @@ body {
   margin-bottom: 40px;
   font-size: 2em;
   color: #ff5722;
+  font-family: "Dancing Script", cursive;
 }
 
 .product-grid {
@@ -488,7 +498,7 @@ body {
   font-size: 28px;
   background: none;
   border: none;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
 }
 /* ======= Versi Mobile (max-width: 768px) ======= */
@@ -572,6 +582,7 @@ body {
 
   .hamburger {
     display: block;
+    color: #000;
   }
 
   .hero-content h1 {
@@ -590,4 +601,20 @@ body {
   .search-bar input {
     width: 100%;
   }
+  .clock {
+    font-size: 0.7rem;
+  }
+}
+.modal-content form .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.modal-content form label {
+  font-weight: 500;
+}
+.modal-content form input[type="radio"] {
+  margin-right: 5px;
 }

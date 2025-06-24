@@ -1,52 +1,48 @@
-// Jam realtime
+// ================== Jam Realtime ==================
 function updateClock() {
   const now = new Date();
-  const clock = document.getElementById("clock");
-  clock.textContent = now.toLocaleTimeString();
+  document.getElementById("clock").textContent = now.toLocaleTimeString();
 }
 setInterval(updateClock, 1000);
 updateClock();
 
-// Modal handling
+// ================== Modal Handling ==================
 const productModal = document.getElementById("productModal");
 const cartModal = document.getElementById("cartModal");
-const closeModals = document.querySelectorAll(".close-modal");
-
-closeModals.forEach((btn) => {
+document.querySelectorAll(".close-modal").forEach((btn) => {
   btn.addEventListener("click", () => {
     productModal.style.display = "none";
     cartModal.style.display = "none";
   });
 });
-
 window.addEventListener("click", (e) => {
   if (e.target === productModal) productModal.style.display = "none";
   if (e.target === cartModal) cartModal.style.display = "none";
 });
 
-// Detail Produk
-const detailButtons = document.querySelectorAll(".detail-btn");
+// ================== Detail Produk ==================
 const modalTitle = document.getElementById("modal-title");
 const modalImg = document.getElementById("modal-img");
 const modalDescription = document.getElementById("modal-description");
 const modalPrice = document.getElementById("modal-price");
 
-detailButtons.forEach((btn) => {
+document.querySelectorAll(".detail-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const product = e.target.closest(".product-item");
     modalTitle.textContent = product.dataset.nama;
     modalImg.src = product.querySelector("img").src;
     modalImg.alt = product.dataset.nama;
     modalDescription.textContent = product.dataset.deskripsi;
-    modalPrice.textContent = `Harga: Rp ${Number(
+    modalPrice.textContent = `Harga: Rp ${parseInt(
       product.dataset.harga
-    ).toLocaleString()}`;
+    ).toLocaleString("id-ID")}`;
     productModal.style.display = "flex";
   });
 });
 
-// Keranjang
+// ================== Keranjang ==================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 const cartCount = document.getElementById("cart-count");
 const cartItemsContainer = document.getElementById("cart-items");
 const cartTotalEl = document.getElementById("cart-total");
@@ -57,12 +53,13 @@ function saveCart() {
 }
 
 function updateCartCount() {
-  let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.textContent = totalQty;
 }
 
 function updateCartDisplay() {
   cartItemsContainer.innerHTML = "";
+
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
     cartTotalEl.textContent = "0";
@@ -70,15 +67,16 @@ function updateCartDisplay() {
   }
 
   let total = 0;
+
   cart.forEach((item) => {
     total += item.qty * item.harga;
+
     const div = document.createElement("div");
     div.classList.add("cart-item");
-
     div.innerHTML = `
       <div class="cart-item-info">
         <h4>${item.nama}</h4>
-        <p>Rp ${item.harga.toLocaleString()}</p>
+        <p>Rp ${item.harga.toLocaleString("id-ID")}</p>
       </div>
       <div class="cart-qty">
         <button class="qty-minus" data-id="${item.id}">−</button>
@@ -90,25 +88,24 @@ function updateCartDisplay() {
     cartItemsContainer.appendChild(div);
   });
 
-  cartTotalEl.textContent = total.toLocaleString();
+  cartTotalEl.textContent = total.toLocaleString("id-ID");
 
-  // Attach event listeners to qty and remove buttons
-  document.querySelectorAll(".qty-minus").forEach((btn) => {
+  // Tambahkan event listener setelah elemen dibuat
+  cartItemsContainer.querySelectorAll(".qty-minus").forEach((btn) => {
     btn.addEventListener("click", () => changeQty(btn.dataset.id, -1));
   });
-  document.querySelectorAll(".qty-plus").forEach((btn) => {
-    btn.addEventListener("click", () => changeQty(btn.dataset.id, +1));
+  cartItemsContainer.querySelectorAll(".qty-plus").forEach((btn) => {
+    btn.addEventListener("click", () => changeQty(btn.dataset.id, 1));
   });
-  document.querySelectorAll(".cart-remove").forEach((btn) => {
+  cartItemsContainer.querySelectorAll(".cart-remove").forEach((btn) => {
     btn.addEventListener("click", () => removeFromCart(btn.dataset.id));
   });
 }
 
 function changeQty(id, delta) {
-  const index = cart.findIndex((i) => i.id == id);
+  const index = cart.findIndex((i) => i.id === id);
   if (index !== -1) {
-    cart[index].qty += delta;
-    if (cart[index].qty < 1) cart[index].qty = 1;
+    cart[index].qty = Math.max(1, cart[index].qty + delta);
     saveCart();
     updateCartCount();
     updateCartDisplay();
@@ -116,41 +113,40 @@ function changeQty(id, delta) {
 }
 
 function removeFromCart(id) {
-  cart = cart.filter((item) => item.id != id);
+  cart = cart.filter((item) => item.id !== id);
   saveCart();
   updateCartCount();
   updateCartDisplay();
 }
 
-// Tambah ke keranjang
-const addToCartButtons = document.querySelectorAll(".add-to-cart");
-addToCartButtons.forEach((btn) => {
+document.querySelectorAll(".add-to-cart").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const product = e.target.closest(".product-item");
     const id = product.dataset.id;
     const nama = product.dataset.nama;
     const harga = parseInt(product.dataset.harga);
 
-    const existing = cart.find((i) => i.id == id);
+    const existing = cart.find((i) => i.id === id);
     if (existing) {
       existing.qty++;
     } else {
       cart.push({ id, nama, harga, qty: 1 });
     }
+
     saveCart();
     updateCartCount();
     alert(`"${nama}" berhasil ditambahkan ke keranjang.`);
   });
 });
 
-// Buka tutup modal keranjang
 openCartBtn.addEventListener("click", () => {
   cartModal.style.display = "flex";
   updateCartDisplay();
 });
 
-// Checkout form
+// ================== Checkout Form ==================
 const checkoutForm = document.getElementById("checkout-form");
+
 checkoutForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (cart.length === 0) {
@@ -163,32 +159,26 @@ checkoutForm.addEventListener("submit", (e) => {
   const hp = formData.get("hp");
   const alamat = formData.get("alamat");
   const antar = formData.get("antar");
-  const catatan = formData.get("catatan");
+  const catatan = formData.get("catatan") || "-";
+  const metodeKirim = formData.get("metodeKirim");
+  const pembayaran = formData.get("pembayaran");
 
-  // Buat pesan WA
-  let pesan = `*Pesanan Pempek Mak Rina*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nWaktu Pengantaran: ${antar}\nCatatan: ${
-    catatan || "-"
-  }\n\n*Detail Pesanan:*\n`;
+  let pesan = `*Pesanan Pempek Mak Rina*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nMetode Pengiriman: ${metodeKirim}\nWaktu: ${antar}\nPembayaran: ${pembayaran}\nCatatan: ${catatan}\n\n*Detail Pesanan:*\n`;
 
   cart.forEach((item) => {
     pesan += `- ${item.nama} x${item.qty} = Rp ${(
-      item.harga * item.qty
-    ).toLocaleString()}\n`;
+      item.qty * item.harga
+    ).toLocaleString("id-ID")}\n`;
   });
 
   const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-  pesan += `\nTotal: Rp ${total.toLocaleString()}`;
+  pesan += `\nTotal: Rp ${total.toLocaleString("id-ID")}`;
 
-  // Encode pesan untuk URL
-  const encodedPesan = encodeURIComponent(pesan);
-
-  // Link WA
-  const waLink = `https://wa.me/6289602799141?text=${encodedPesan}`;
-
-  // Buka WA di tab baru
+  const waLink = `https://wa.me/6281234567890?text=${encodeURIComponent(
+    pesan
+  )}`;
   window.open(waLink, "_blank");
 
-  // Reset keranjang dan form
   cart = [];
   saveCart();
   updateCartCount();
@@ -196,63 +186,48 @@ checkoutForm.addEventListener("submit", (e) => {
   checkoutForm.reset();
   cartModal.style.display = "none";
 });
-// Fitur pencarian produk (nama, harga, jenis)
+
+// ================== Pencarian Produk ==================
 const searchInput = document.getElementById("searchInput");
 const products = document.querySelectorAll(".product-item");
 
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.trim().toLowerCase();
-
   products.forEach((product) => {
     const nama = product.dataset.nama.toLowerCase();
     const harga = product.dataset.harga.toLowerCase();
     const jenis = (product.dataset.jenis || "").toLowerCase();
 
-    // Cek apakah query ada di nama, harga, atau jenis
-    if (
-      nama.includes(query) ||
-      harga.includes(query) ||
-      jenis.includes(query)
-    ) {
-      product.style.display = "";
-    } else {
-      product.style.display = "none";
-    }
+    product.style.display =
+      nama.includes(query) || harga.includes(query) || jenis.includes(query)
+        ? ""
+        : "none";
   });
 });
-// Ganti gambar hero secara otomatis dengan fade
+
+// ================== Ganti Gambar Hero ==================
 document.addEventListener("DOMContentLoaded", () => {
   const images = document.querySelectorAll(".hero-bg img");
   let currentIndex = 0;
-  const intervalTime = 7000; // 7 detik
-  const fadeDuration = 1500; // sesuai css transition (ms)
+  const intervalTime = 7000;
 
-  function showNextImage() {
+  setInterval(() => {
     images[currentIndex].classList.remove("active");
     currentIndex = (currentIndex + 1) % images.length;
     images[currentIndex].classList.add("active");
-  }
-
-  setInterval(showNextImage, intervalTime);
+  }, intervalTime);
 });
-// Animasi scroll produk satu per satu
-const productItems = document.querySelectorAll(".product-item");
 
+// ================== Animasi Scroll Produk ==================
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate");
-      } else {
-        entry.target.classList.remove("animate");
-      }
+      entry.target.classList.toggle("animate", entry.isIntersecting);
     });
   },
-  {
-    threshold: 0.1, // hanya saat sedikit masuk viewport
-  }
+  { threshold: 0.1 }
 );
 
-productItems.forEach((item) => {
-  observer.observe(item);
-});
+document
+  .querySelectorAll(".product-item")
+  .forEach((item) => observer.observe(item));

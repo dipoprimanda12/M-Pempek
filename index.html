@@ -6,6 +6,8 @@
     <title>M-Pempek</title>
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <!-- Navigasi -->
@@ -216,34 +218,56 @@
       </div>
     </div>
 
-    <!-- Modal Keranjang Belanja -->
-    <div id="cartModal" class="modal">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2>Keranjang Belanja</h2>
-        <div id="cart-items"></div>
-        <h3>Total: Rp <span id="cart-total">0</span></h3>
+  <!-- Modal Keranjang Belanja -->
+<div id="cartModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Keranjang Belanja</h2>
+    <div id="cart-items"></div>
+    <h3>Total: Rp <span id="cart-total">0</span></h3>
 
-        <h3>Form Pemesanan</h3>
-        <form id="checkout-form">
-          <input type="text" name="nama" placeholder="Nama Lengkap" required />
-          <input type="tel" name="hp" placeholder="Nomor HP" required />
-          <input
-            type="text"
-            name="alamat"
-            placeholder="Alamat Pengiriman"
-            required
-          />
-          <label for="antar">Waktu & Tanggal Pengantaran:</label>
-          <input type="datetime-local" name="antar" id="antar" required />
-          <textarea
-            name="catatan"
-            placeholder="Catatan Tambahan (opsional)"
-          ></textarea>
-          <button type="submit">Pesan Sekarang</button>
-        </form>
+    <h3>Form Pemesanan</h3>
+    <form id="checkout-form">
+      <input type="text" name="nama" placeholder="Nama Lengkap" required />
+      <input type="tel" name="hp" placeholder="Nomor HP" required />
+
+      <!-- Metode Pengiriman dan Waktu -->
+      <label>Pengiriman:</label>
+      <div class="form-group">
+        <label>
+          <input type="radio" name="metodeKirim" value="Antar ke Alamat" checked />
+          Antar
+        </label>
+        <label>
+          <input type="radio" name="metodeKirim" value="Jemput Sendiri" />
+          Jemput
+        </label>
+        <div id="alamatField">
+          <input type="text" name="alamat" placeholder="Alamat Pengiriman" />
+        </div>
+        <input type="datetime-local" name="antar" required />
       </div>
-    </div>
+
+      <!-- Metode Pembayaran -->
+      <label>Pembayaran:</label>
+      <div class="form-group">
+        <label>
+          <input type="radio" name="pembayaran" value="Transfer" checked />
+          Transfer
+        </label>
+        <label>
+          <input type="radio" name="pembayaran" value="Cash" />
+          Cash
+        </label>
+      </div>
+
+      <textarea name="catatan" placeholder="Catatan Tambahan (opsional)"></textarea>
+      <button type="submit">Pesan Sekarang</button>
+    </form>
+  </div>
+</div>
+
+
     <!-- Order -->
     <section id="order" class="order">
       <h2>Hubungi Kami</h2>
