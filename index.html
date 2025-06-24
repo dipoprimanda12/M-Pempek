@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M-Pempek</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/script.js"></script>
+  </head>
+  <body>
+    <!-- Navigasi -->
+    <nav class="navbar">
+  <div class="logo">M-Pempek</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#products">Produk</a>
+    <a href="#order">Kontak</a>
+   
+  </div>
+ <button id="openCart">
+      🛒 (<span id="cart-count">0</span>)
+    </button>
+  <div class="clock" id="clock"></div>
+   <button class="hamburger" id="hamburger">
+    ☰
+  </button>
+</nav>
+
+
+    <!-- Hero -->
+    <header id="home" class="hero-section">
+      <div class="hero-content">
+        <h1>Pempek Asli Palembang</h1>
+        <p>Lezat, Otentik & Tanpa Pengawet</p>
+        <a href="#products" class="btn-view">Lihat Produk ↓</a>
+      </div>
+
+      <!-- Background images container -->
+      <div class="hero-bg">
+        <img src="https://st.depositphotos.com/1938399/2765/i/450/depositphotos_27657215-stock-photo-pempek-indonesian-cuisine.jpg" alt="Pempek 1" class="active" />
+        <img src="https://t3.ftcdn.net/jpg/03/09/41/52/360_F_309415224_fLyBq5YKo0MCWBMXPewKIiKqEyUfDX1j.jpg" alt="Pempek 2" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9kpnvtCcNoaXo9XOMxdLt9ojyaM3MjDJL-A&s" alt="Pempek 3" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLt2wY0hz9460_hbDA5EueKYTWf7d8F-ieJg&s" alt="Pempek 3" />
+        <img src="https://i.pinimg.com/736x/cb/ab/36/cbab3668111326924649e6214dae92e1.jpg" alt="Pempek 4" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS01kbr_yQAMF9rS4kCZLV9vvNQmwjaqTR8tA&s" alt="Pempek 5" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv079dlU0g2mA-iLLuGN4L43NGO3sh-dvMJQ&s" alt="Pempek 6" />
+      </div>
+    </header>
+
+   <!-- Search -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari produk (nama, harga, jenis)..."
+        />
+      </div>
+    <!-- Produk -->
+    <section id="products" class="products">
+      <h2>Produk</h2>
+      <div class="product-grid">
+        <div
+          class="product-item"
+          data-id="1"
+          data-nama="Pempek Lenjer"
+          data-harga="50000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX45PRpOsr65vpIfvYbEdyUD_CZtNSTqiqhw&s" alt="Pempek Lenjer" />
+          <h3>Pempek Lenjer</h3>
+          <p>Rp 50.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="2"
+          data-nama="Pempek Telur"
+          data-harga="60000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://i.ytimg.com/vi/zTs0RJ9F1kE/maxresdefault.jpg" alt="Pempek Telur" />
+          <h3>Pempek Telur</h3>
+          <p>Rp 60.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="3"
+          data-nama="Pempek Kulit"
+          data-harga="40000"
+          data-deskripsi="Pempek Kulit yang renyah dan gurih, favorit banyak orang."
+        >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9gfeaUVbW9t4XlxN-nOjW906A-jWLIbd1Qg&s" alt="Pempek Kulit" />
+          <h3>Pempek Kulit</h3>
+          <p>Rp 40.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+         <div
+          class="product-item"
+          data-id="4"
+          data-nama="Pempek Kapal Selam"
+          data-harga="65000"
+          data-deskripsi="Pempek Kulit yang renyah dan gurih, favorit banyak orang."
+        >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQyu6GxIqo2bBFfyTOwHCJZs-_b49W_fCyaA&s" alt="Pempek Kapal Selam" />
+          <h3>Pempek Kapal Selam</h3>
+          <p>Rp 65.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="5"
+          data-nama="Pempek Bulat"
+          data-harga="50000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://i.ytimg.com/vi/MAPeQkUomfw/maxresdefault.jpg" alt="Pempek Bulat" />
+          <h3>Pempek Bulat</h3>
+          <p>Rp 50.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+         <div
+          class="product-item"
+          data-id="6"
+          data-nama="Pempek Keriting"
+          data-harga="40000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfDXYOIt4U8tOV3EEWzlevmJkhb_VNK1xxUA&s" alt="Pempek Keriting" />
+          <h3>Pempek Keriting</h3>
+          <p>Rp 40.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="7"
+          data-nama="Pempek pistel"
+          data-harga="50000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://paxelmarket.co/wp-content/uploads/2022/08/Pistel_isi_10.jpeg" alt="Pempek pistel" />
+          <h3>Pempek pistel</h3>
+          <p>Rp 50.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="8"
+          data-nama="Pempek Lengggang"
+          data-harga="30000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://i.ytimg.com/vi/S_4W1WHtq84/maxresdefault.jpg" alt="Pempek Lengggang" />
+          <h3>Pempek Lengggang</h3>
+          <p>Rp 30.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="9"
+          data-nama="Pempek Tahu"
+          data-harga="55000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://down-id.img.susercontent.com/file/1812f9b69d321d790a8ba720c9451bbf" alt="Pempek Tahu" />
+          <h3>Pempek Tahu</h3>
+          <p>Rp 55.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="10"
+          data-nama="Pempek panggang"
+          data-harga="40000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZbCEjYQdrNjOx8YJCrC_aKHozmRYHJkI2Xw&s" alt="Pempek panggang" />
+          <h3>Pempek panggang</h3>
+          <p>Rp 40.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+        <div
+          class="product-item"
+          data-id="11"
+          data-nama="Pempek Dos"
+          data-harga="25000"
+          data-deskripsi="Lorem ipsum dolor sit amet."
+        >
+          <img src="https://i.ytimg.com/vi/3Ffr5ftv9Rw/sddefault.jpg" alt="Pempek Dos" />
+          <h3>Pempek Dos</h3>
+          <p>Rp 25.000</p>
+          <button class="detail-btn">Detail</button>
+          <button class="add-to-cart">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Detail Produk -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-img" src="" alt="" />
+        <p id="modal-description"></p>
+        <p id="modal-price"></p>
+      </div>
+    </div>
+
+    <!-- Modal Keranjang Belanja -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Keranjang Belanja</h2>
+        <div id="cart-items"></div>
+        <h3>Total: Rp <span id="cart-total">0</span></h3>
+
+        <h3>Form Pemesanan</h3>
+        <form id="checkout-form">
+          <input type="text" name="nama" placeholder="Nama Lengkap" required />
+          <input type="tel" name="hp" placeholder="Nomor HP" required />
+          <input
+            type="text"
+            name="alamat"
+            placeholder="Alamat Pengiriman"
+            required
+          />
+          <label for="antar">Waktu & Tanggal Pengantaran:</label>
+          <input type="datetime-local" name="antar" id="antar" required />
+          <textarea
+            name="catatan"
+            placeholder="Catatan Tambahan (opsional)"
+          ></textarea>
+          <button type="submit">Pesan Sekarang</button>
+        </form>
+      </div>
+    </div>
+    <!-- Order -->
+    <section id="order" class="order">
+      <h2>Hubungi Kami</h2>
+
+      <form action="https://wa.me/6289602799141" method="get" target="_blank">
+        <input type="text" placeholder="Nama Lengkap" required />
+        <input type="text" placeholder="Alamat" required />
+        <input type="tel" placeholder="Nomor WhatsApp" required />
+        <textarea
+          placeholder="Catatan"
+          required
+        ></textarea>
+        <button type="submit">Kirim via WhatsApp</button>
+      </form>
+    </section>
+    <a href="https://wa.me/6289602799141" target="_blank" class="whatsapp-button" aria-label="Chat via WhatsApp">
+   WhatsApp
+</a>
+<section id="map" class="map-section">
+  <h2>Lokasi Kami</h2>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1267.9185835706567!2d106.93093376960718!3d-6.205301499611417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698b5cec616b41%3A0x93c96dbf6ea8c580!2sPusat%20Industri%20Kecil%20(Pik)!5e1!3m2!1sen!2sid!4v1750744900107!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+      <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 dipo primanda. All rights reserved.
+  </footer>
+  <script>
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+
+</body>
+</html>
+  </body>
+</html>
