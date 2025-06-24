@@ -208,6 +208,9 @@ body {
   border-radius: 8px;
   padding: 20px;
   position: relative;
+  top: -2.3rem; /* untuk mengatasi scroll */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .close-modal {
