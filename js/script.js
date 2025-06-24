@@ -163,7 +163,7 @@ checkoutForm.addEventListener("submit", (e) => {
   const metodeKirim = formData.get("metodeKirim");
   const pembayaran = formData.get("pembayaran");
 
-  let pesan = `*Pesanan Pempek Mak Rina*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nMetode Pengiriman: ${metodeKirim}\nWaktu: ${antar}\nPembayaran: ${pembayaran}\nCatatan: ${catatan}\n\n*Detail Pesanan:*\n`;
+  let pesan = `*Pesanan M-Pempek*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nMetode Pengiriman: ${metodeKirim}\nWaktu: ${antar}\nPembayaran: ${pembayaran}\nCatatan: ${catatan}\n\n*Detail Pesanan:*\n`;
 
   cart.forEach((item) => {
     pesan += `- ${item.nama} x${item.qty} = Rp ${(
@@ -174,7 +174,7 @@ checkoutForm.addEventListener("submit", (e) => {
   const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
   pesan += `\nTotal: Rp ${total.toLocaleString("id-ID")}`;
 
-  const waLink = `https://wa.me/6281234567890?text=${encodeURIComponent(
+  const waLink = `https://wa.me/6285719496510?text=${encodeURIComponent(
     pesan
   )}`;
   window.open(waLink, "_blank");
