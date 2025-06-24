@@ -12,20 +12,22 @@
   <body>
     <!-- Navigasi -->
     <nav class="navbar">
-  <div class="logo">M-Pempek</div>
-  <div class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#products">Produk</a>
-    <a href="#order">Kontak</a>
-   
-  </div>
- <button id="openCart">
-      🛒 (<span id="cart-count">0</span>)
-    </button>
+      <div class="logo">M-Pempek</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#products">Produk</a>
+        <a href="#order">Kontak</a>
+      </div>
+      <div class="top-controls">
+        <button id="openCart">
+          🛒 (<span id="cart-count">0</span>)
+        </button>
   <div class="clock" id="clock"></div>
-   <button class="hamburger" id="hamburger">
+  <button class="hamburger" id="hamburger">
     ☰
   </button>
+</div>
+
 </nav>
 
 
@@ -269,29 +271,35 @@
 
 
     <!-- Order -->
-    <section id="order" class="order">
-      <h2>Hubungi Kami</h2>
+   <section id="order" class="order animate-right">
+  <h2>Hubungi Kami</h2>
+  <form action="https://wa.me/6289602799141" method="get" target="_blank">
+    <input type="text" placeholder="Nama Lengkap" required />
+    <input type="text" placeholder="Alamat" required />
+    <input type="tel" placeholder="Nomor WhatsApp" required />
+    <textarea placeholder="Catatan" required></textarea>
+    <button type="submit">Kirim via WhatsApp</button>
+  </form>
+</section>
 
-      <form action="https://wa.me/6289602799141" method="get" target="_blank">
-        <input type="text" placeholder="Nama Lengkap" required />
-        <input type="text" placeholder="Alamat" required />
-        <input type="tel" placeholder="Nomor WhatsApp" required />
-        <textarea
-          placeholder="Catatan"
-          required
-        ></textarea>
-        <button type="submit">Kirim via WhatsApp</button>
-      </form>
-    </section>
     <a href="https://wa.me/6289602799141" target="_blank" class="whatsapp-button" aria-label="Chat via WhatsApp">
    WhatsApp
 </a>
-<section id="map" class="map-section">
+<section id="map" class="map-section animate-left">
   <h2>Lokasi Kami</h2>
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1267.9185835706567!2d106.93093376960718!3d-6.205301499611417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698b5cec616b41%3A0x93c96dbf6ea8c580!2sPusat%20Industri%20Kecil%20(Pik)!5e1!3m2!1sen!2sid!4v1750744900107!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1267.9185835706567!2d106.93093376960718!3d-6.205301499611417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698b5cec616b41%3A0x93c96dbf6ea8c580!2sPusat%20Industri%20Kecil%20(Pik)!5e1!3m2!1sen!2sid!4v1750744900107!5m2!1sen!2sid"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
   </div>
 </section>
+
       <!-- Footer -->
   <footer class="footer">
     &copy; 2025 dipo primanda. All rights reserved.
@@ -302,6 +310,48 @@
 
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const targets = document.querySelectorAll(".animate-right");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      {
+        threshold: 0.1, // 10% elemen terlihat baru dianggap "muncul"
+      }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const animateEls = document.querySelectorAll(".animate-left");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    animateEls.forEach((el) => observer.observe(el));
   });
 </script>
 
