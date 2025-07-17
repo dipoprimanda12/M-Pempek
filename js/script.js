@@ -20,22 +20,31 @@ window.addEventListener("click", (e) => {
   if (e.target === cartModal) cartModal.style.display = "none";
 });
 
-// ================== Detail Produk ==================
 const modalTitle = document.getElementById("modal-title");
 const modalImg = document.getElementById("modal-img");
 const modalDescription = document.getElementById("modal-description");
 const modalPrice = document.getElementById("modal-price");
+const modaljumlah = document.getElementById("modal-jumlah");
+const modalIsi = document.getElementById("modal-isi"); // <== Tambahan
 
 document.querySelectorAll(".detail-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const product = e.target.closest(".product-item");
-    modalTitle.textContent = product.dataset.nama;
+
+    const nama = product.dataset.nama;
+    const harga = parseInt(product.dataset.harga);
+    const deskripsi = product.dataset.deskripsi;
+    const jumlah = product.dataset.jumlah;
+    const isi = product.dataset.isi;
+
+    modalTitle.textContent = nama;
     modalImg.src = product.querySelector("img").src;
-    modalImg.alt = product.dataset.nama;
-    modalDescription.textContent = product.dataset.deskripsi;
-    modalPrice.textContent = `Harga: Rp ${parseInt(
-      product.dataset.harga
-    ).toLocaleString("id-ID")}`;
+    modalImg.alt = nama;
+    modalDescription.textContent = deskripsi;
+    modalPrice.textContent = `Harga: Rp ${harga.toLocaleString("id-ID")}`;
+    modaljumlah.textContent = `Jumlah Isi: ${jumlah}`;
+    modalIsi.textContent = `Isi Paket: ${isi}`;
+
     productModal.style.display = "flex";
   });
 });
@@ -143,17 +152,38 @@ openCartBtn.addEventListener("click", () => {
   cartModal.style.display = "flex";
   updateCartDisplay();
 });
-
-// ================== Checkout Form ==================
+// Checkout
 const checkoutForm = document.getElementById("checkout-form");
 
 checkoutForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (cart.length === 0) {
-    alert("Keranjang masih kosong!");
+
+  // Validasi isi keranjang
+  const cartItems = document.querySelectorAll("#cart-items .cart-item");
+  const total = parseInt(
+    document.getElementById("cart-total").textContent.replace(/\D/g, ""),
+    10
+  );
+
+  // Cek minimal pembelian
+  if (cartItems.length < 3 && total < 150000) {
+    alert(
+      "Minimal pembelian 3 produk ATAU minimal total belanja Rp 150.000 untuk melanjutkan checkout."
+    );
+
+    // Redirect ke halaman produk setelah klik OK
+    window.location.href = "/#home";
     return;
   }
 
+  // Jika keranjang kosong (dari array `cart`)
+  if (cart.length === 0) {
+    alert("Keranjang masih kosong!");
+    window.location.href = "/#produk"; // redirect juga kalau keranjang kosong
+    return;
+  }
+
+  // Ambil data form
   const formData = new FormData(checkoutForm);
   const nama = formData.get("nama");
   const hp = formData.get("hp");
@@ -163,7 +193,8 @@ checkoutForm.addEventListener("submit", (e) => {
   const metodeKirim = formData.get("metodeKirim");
   const pembayaran = formData.get("pembayaran");
 
-  let pesan = `*Pesanan M-Pempek*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nMetode Pengiriman: ${metodeKirim}\nWaktu: ${antar}\nPembayaran: ${pembayaran}\nCatatan: ${catatan}\n\n*Detail Pesanan:*\n`;
+  // Buat pesan WhatsApp
+  let pesan = `*Pesanan Produk Lici Licious*\n\nNama: ${nama}\nNo HP: ${hp}\nAlamat: ${alamat}\nMetode Pengiriman: ${metodeKirim}\nWaktu: ${antar}\nPembayaran: ${pembayaran}\nCatatan: ${catatan}\n\n*Detail Pesanan:*\n`;
 
   cart.forEach((item) => {
     pesan += `- ${item.nama} x${item.qty} = Rp ${(
@@ -171,20 +202,25 @@ checkoutForm.addEventListener("submit", (e) => {
     ).toLocaleString("id-ID")}\n`;
   });
 
-  const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-  pesan += `\nTotal: Rp ${total.toLocaleString("id-ID")}`;
+  const totalHarga = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+  pesan += `\nTotal: Rp ${totalHarga.toLocaleString("id-ID")}`;
 
+  // Kirim ke WhatsApp
   const waLink = `https://wa.me/6285719496510?text=${encodeURIComponent(
     pesan
   )}`;
   window.open(waLink, "_blank");
 
+  // Reset keranjang dan tampilan
   cart = [];
   saveCart();
   updateCartCount();
   updateCartDisplay();
   checkoutForm.reset();
   cartModal.style.display = "none";
+
+  // Pesan sukses
+  alert("Pemesanan berhasil dikirim!");
 });
 
 // ================== Pencarian Produk ==================
@@ -231,3 +267,9 @@ const observer = new IntersectionObserver(
 document
   .querySelectorAll(".product-item")
   .forEach((item) => observer.observe(item));
+document.addEventListener("DOMContentLoaded", () => {
+  const fadeEls = document.querySelectorAll(".fade-in-up");
+  fadeEls.forEach((el, i) => {
+    setTimeout(() => el.classList.add("show"), 200 + i * 100);
+  });
+});

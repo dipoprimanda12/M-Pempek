@@ -1,4 +1,24 @@
 /* Reset dan dasar */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  /* Tambahkan ini: */
+  background-image: image-set(
+    url("https://static.vecteezy.com/system/resources/previews/006/240/302/non_2x/abstract-soft-focus-sunset-field-landscape-of-yellow-flowers-and-grass-meadow-warm-golden-hour-sunset-sunrise-time-tranquil-spring-summer-nature-closeup-and-blurred-forest-background-idyllic-nature-photo.jpg")
+      1x
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7,7 +27,9 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-image: image-set(
+    url("https://images.pexels.com/photos/1590549/pexels-photo-1590549.jpeg") 1x
+  );
   color: #333;
 }
 
@@ -25,16 +47,24 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
 .navbar .logo {
   font-weight: bold;
   font-size: 1.2em;
   color: #ff5722;
-  font-family: "Dancing Script", cursive;
+  /* font-family: "Dancing Script", cursive; */
 }
 
 .nav-links a,
 .nav-links button {
-  margin: 0 10px;
+  margin: 0 20px;
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -66,61 +96,219 @@ body {
 
 /* Hero section */
 .hero-section {
-  height: 100vh;
-  background: url("../img/hero.jpg") no-repeat center center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    #ffb347,
+    #ffcc33
+  ); /* warna oranye-kuning lembut */
+  color: #fff;
+  padding: 100px 20px;
   text-align: center;
-  color: white;
-  padding: 0 1em;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-content h1 {
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-section h1 {
+  font-family: "Dancing Script", cursive;
   font-size: 3em;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.3em;
 }
 
-.hero-content p {
+.hero-section p {
   font-size: 1.5em;
-  margin-top: 0.3em;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  color: #fffde0;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-view {
   margin-top: 30px;
   padding: 10px 25px;
   font-size: 1.1em;
-  background: linear-gradient(135deg, #f5f8f5, #e64a19);
-  color: #000000;
+  background: #f27f2c;
+  color: #ffbc69;
   border: none;
   cursor: pointer;
   text-decoration: none;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(255, 87, 34, 0.5);
   transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
 }
 
 .btn-view:hover {
-  background: linear-gradient(135deg, #e64a19, #f5f8f5);
+  background: #f0cabf;
+  color: #ffffff; /* agar kontras tetap bagus */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  transform: scale(1.08);
+}
+.hero-bg {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #fff 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.hero-bg img.active {
+  opacity: 1;
+}
+.welcome-text {
+  background: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.welcome-text .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.welcome-text h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #e67e22;
+  font-family: "Dancing Script", cursive;
+}
+
+.welcome-text p {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 15px;
+}
+.cart-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.cart-button:hover {
+  transform: scale(1.1);
+  color: #e67e22;
+}
+.about-lici {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  color: #5e3c15;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.about-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #c47f1c;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  margin: auto;
+  margin-top: 8px;
+}
+
+.about-content {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.about-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.icon-item {
+  text-align: center;
+  width: 100px;
+}
+
+.icon-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  transition: transform 0.5s ease, box-shadow 0.4s ease;
+}
+.icon-item img:hover {
+  transform: scale(1.5);
+}
+.icon-item p {
+  font-size: 0.95rem;
+  color: #4e4e4e;
+  margin-top: -0.9rem;
 }
 
 /* Produk */
 .products {
   padding: 120px 20px 50px;
-  background: #f4f4f4;
 }
 
 .products h2 {
   text-align: center;
   margin-bottom: 40px;
   font-size: 2em;
-  color: #ff5722;
-  font-family: "Dancing Script", cursive;
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
-
+.products p {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1em;
+  color: #ffffff;
+  border: 1px solid black;
+  padding: 4px 8px;
+  display: inline-block;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -137,7 +325,12 @@ body {
 }
 
 .product-item {
-  background: white;
+  background: linear-gradient(
+    135deg,
+    rgba(161, 209, 226, 0.702),
+    rgba(255, 255, 255, 0.699),
+    rgba(255, 217, 0, 0.698)
+  );
   padding: 15px;
   text-align: center;
   border-radius: 8px;
@@ -149,6 +342,12 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transform: translateY(-5px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 217, 0, 0.703),
+    rgba(255, 255, 255, 0.701),
+    rgba(161, 209, 226, 0.701)
+  );
 }
 
 .product-item img {
@@ -180,11 +379,13 @@ body {
   cursor: pointer;
   border-radius: 4px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .product-item button:hover {
   background-color: #c18f67;
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Modal umum */
@@ -394,7 +595,7 @@ body {
 .order button {
   color: #000000;
   border: none;
-  background: linear-gradient(135deg, #4caf50, #f5f8f5);
+  background: linear-gradient(135deg, #4caf4fa8, #f5f8f5a3);
   padding: 10px 30px;
   font-size: 16px;
   border-radius: 5px;
@@ -402,18 +603,79 @@ body {
   font-weight: bold;
 }
 .order button:hover {
-  background: linear-gradient(135deg, #f5f8f5, #4caf50);
+  background: linear-gradient(135deg, #f5f8f59d, #4caf4f95);
   color: #000000;
   cursor: pointer;
 }
 .order h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #4caf50;
-  font-family: "Dancing Script", cursive;
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
+.floating-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.floating-form .form-group {
+  position: relative;
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.floating-form input,
+.floating-form textarea {
+  width: 100%;
+  font-weight: bold;
+  padding: 14px 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: transparent;
+  outline: none;
+  text-align: center; /* text berada di tengah */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.floating-form label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 0 5px;
+  color: #ffffff;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  text-align: center;
+}
+
+/* Saat input aktif atau sudah diisi */
+.floating-form input:focus + label,
+.floating-form input:not(:placeholder-shown) + label,
+.floating-form textarea:focus + label,
+.floating-form textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #f57c00;
+  transform: none;
+  text-align: left;
+}
+
 .map-section.animate-left h2 {
-  font-family: "Dancing Script", cursive;
+  counter-reset: #ffff;
 }
 
 .map-section.animate-left.show {
@@ -553,11 +815,14 @@ body {
 }
 /* map */
 .map-section {
-  padding: 40px 20px;
-  background-color: #f9f9f9;
+  /* padding: 10px 300px; */
   text-align: center;
 }
-
+.map-section h2 {
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
 .map-container {
   position: relative;
   overflow: hidden;
@@ -572,13 +837,34 @@ body {
   height: 100%;
   border: 0;
 }
+.top-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .hamburger {
-  display: none;
-  font-size: 28px;
   background: none;
   border: none;
-  color: rgb(255, 255, 255);
+  font-size: 1.5em;
   cursor: pointer;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.hamburger:hover {
+  transform: rotate(90deg);
+  color: #e67e22;
+}
+
+.clock {
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #fff7e6;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* ======= Versi Mobile (max-width: 768px) ======= */
@@ -637,9 +923,9 @@ body {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 40px;
     right: 0;
-    background-color: #fff;
+    background-color: #ffff;
     width: 100%;
     text-align: right;
     padding: 20px;
@@ -654,7 +940,7 @@ body {
   .nav-links a,
   .nav-links button {
     display: block;
-    margin: 10px 0;
+    margin: 3px 0;
     color: #333;
     font-weight: bold;
     font-size: 1.1em;
@@ -662,7 +948,7 @@ body {
 
   .hamburger {
     display: block;
-    color: #000;
+    color: #000000;
   }
 
   .hero-content h1 {
@@ -733,4 +1019,34 @@ body {
     background: transparent;
     box-shadow: none;
   }
+}
+/* logo di navbar */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2a2a72;
+}
+/* Animasi dasar saat elemen muncul */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0);
 }
