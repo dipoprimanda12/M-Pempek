@@ -288,6 +288,7 @@ body {
 /* Produk */
 .products {
   padding: 120px 20px 50px;
+  text-align: center;
 }
 
 .products h2 {
@@ -310,8 +311,9 @@ body {
     1px 1px 0 #000;
 }
 .product-grid {
+  text-align: center;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 2fr));
   gap: 20px;
 }
 .product-grid img {
@@ -359,20 +361,24 @@ body {
 }
 
 .product-item h3 {
+  text-align: center;
   margin: 0;
   margin-bottom: 10px;
   color: #333;
 }
 
 .product-item p {
+  text-align: center;
   margin: 0 0 10px;
   font-weight: bold;
   color: #ff5722;
 }
 
 .product-item button {
-  margin: 5px 5px 0 5px;
-  padding: 8px 12px;
+  display: block; /* Agar tombol tidak sejajar */
+  width: 100%; /* Supaya lebar penuh container tombol */
+  margin: 8px 0; /* Jarak atas-bawah antar tombol */
+  padding: 10px 12px;
   border: none;
   background-color: #ff5722;
   color: white;
@@ -380,11 +386,12 @@ body {
   border-radius: 4px;
   font-weight: 600;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  text-align: center;
 }
 
 .product-item button:hover {
   background-color: #c18f67;
-  transform: scale(1.2);
+  transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -1049,4 +1056,7 @@ body {
 .fade-in-up.show {
   opacity: 1;
   transform: translateY(0);
+}
+.search-bar {
+  width: 100%;
 }
