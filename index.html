@@ -571,6 +571,29 @@
     animateEls.forEach((el) => observer.observe(el));
   });
 </script>
+<script>
+  const stars = document.querySelectorAll('#rating-input span');
+  const ratingInput = document.getElementById('rating');
+
+  stars.forEach((star) => {
+    star.addEventListener('click', () => {
+      const value = parseInt(star.getAttribute('data-value'));
+      ratingInput.value = value;
+      updateStars(value);
+    });
+  });
+
+  function updateStars(value) {
+    stars.forEach((s) => {
+      const starValue = parseInt(s.getAttribute('data-value'));
+      if (starValue <= value) {
+        s.classList.add('selected');
+      } else {
+        s.classList.remove('selected');
+      }
+    });
+  }
+</script>
 
 
 </body>
