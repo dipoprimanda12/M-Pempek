@@ -493,7 +493,30 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5071.673592762946!2d106.93915843963623!3d-6.20537854529754!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698b665231c35f%3A0x417a18423019c9cc!2sJl.%20H.%20Sanyar%20Gg.%20H.%20Abdullah%20No.99A%2C%20RT.15%2FRW.5%2C%20Penggilingan%2C%20Cakung%2C%20East%20Jakarta%20City%2C%20Jakarta%2013940!5e1!3m2!1sid!2sid!4v1752769039582!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
-
+<!-- Komentar dan Rating -->
+      <section class="komentar fade-in">
+        <h2>🗨️ Komentar & Rating</h2>
+        <form id="form-komentar">
+          <input type="text" id="nama" placeholder="Nama Anda" required />
+          <textarea
+            id="pesan"
+            placeholder="Tulis komentar Anda..."
+            required
+          ></textarea>
+          <label for="rating">Rating:</label>
+          <div id="rating-input">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+          </div>
+          <input type="hidden" id="rating" value="0" />
+          <button type="submit">Kirim Komentar</button>
+        </form>
+        <div id="list-komentar"></div>
+      </section>
+    </main>
       <!-- Footer -->
   <footer class="footer">
     &copy; 2025 dipo primanda. All rights reserved.

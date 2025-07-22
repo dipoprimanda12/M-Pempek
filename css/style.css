@@ -1062,3 +1062,108 @@ body {
 .search-bar {
   width: 100%;
 }
+/* komentar */
+/* Komentar Section */
+.komentar {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fdfdfd86;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.komentar h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#form-komentar input[type="text"],
+#form-komentar textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#form-komentar textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+#form-komentar label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #444;
+}
+
+#rating-input {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#rating-input span {
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+#rating-input span.selected,
+#rating-input span:hover,
+#rating-input span:hover ~ span {
+  color: #f5b301;
+}
+
+#form-komentar button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#form-komentar button:hover {
+  background-color: #45a049;
+}
+
+#list-komentar {
+  margin-top: 30px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.komentar-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #4caf50;
+  border-radius: 6px;
+}
+
+.komentar-item h4 {
+  margin: 0 0 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.komentar-item p {
+  margin: 0;
+  color: #555;
+}
+
+.komentar-item .bintang {
+  color: #f5b301;
+  margin-top: 5px;
+}

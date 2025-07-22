@@ -273,3 +273,41 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => el.classList.add("show"), 200 + i * 100);
   });
 });
+// === Simpan Komentar ke localStorage ===
+document
+  .getElementById("form-komentar")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nama = document.getElementById("nama").value.trim();
+    const pesan = document.getElementById("pesan").value.trim();
+    const rating = parseInt(document.getElementById("rating").value);
+
+    if (nama && pesan && rating > 0) {
+      const komentarBaru = { nama, pesan, rating };
+      const komentarList =
+        JSON.parse(localStorage.getItem("komentarList")) || [];
+      komentarList.push(komentarBaru);
+      localStorage.setItem("komentarList", JSON.stringify(komentarList));
+
+      this.reset();
+      ratingInput.value = 0;
+      stars.forEach((s) => s.classList.remove("active"));
+      loadKomentar();
+    } else {
+      alert("Silakan isi nama, komentar, dan rating.");
+    }
+  });
+
+// === Tampilkan Komentar ===
+function loadKomentar() {
+  const komentarList = JSON.parse(localStorage.getItem("komentarList")) || [];
+  const list = document.getElementById("list-komentar");
+  list.innerHTML = "";
+
+  const last5 = komentarList.slice(-5).reverse();
+  last5.forEach((k) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<p><strong>${k.nama}</strong> (${k.rating}⭐): ${k.pesan}</p>`;
+    list.appendChild(div);
+  });
+}
