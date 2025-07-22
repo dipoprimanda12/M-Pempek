@@ -572,18 +572,59 @@
   });
 </script>
 <script>
-  const stars = document.querySelectorAll('#rating-input span');
+  const form = document.getElementById('form-komentar');
+  const listKomentar = document.getElementById('list-komentar');
+  const namaInput = document.getElementById('nama');
+  const pesanInput = document.getElementById('pesan');
   const ratingInput = document.getElementById('rating');
 
-  stars.forEach((star) => {
-    star.addEventListener('click', () => {
-      const value = parseInt(star.getAttribute('data-value'));
-      ratingInput.value = value;
-      updateStars(value);
+  // Ambil dari localStorage saat halaman dibuka
+  let komentarList = JSON.parse(localStorage.getItem('komentarList')) || [];
+
+  function renderKomentar() {
+    listKomentar.innerHTML = '';
+    komentarList.forEach((komentar) => {
+      const div = document.createElement('div');
+      div.classList.add('komentar-item');
+      div.innerHTML = `
+        <h4>${komentar.nama}</h4>
+        <p>${komentar.pesan}</p>
+        <div class="bintang">${'★'.repeat(komentar.rating)}</div>
+      `;
+      listKomentar.appendChild(div);
     });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nama = namaInput.value.trim();
+    const pesan = pesanInput.value.trim();
+    const rating = parseInt(ratingInput.value);
+
+    if (!nama || !pesan || rating === 0) {
+      alert('Mohon lengkapi semua kolom dan pilih rating.');
+      return;
+    }
+
+    const komentarBaru = { nama, pesan, rating };
+
+    // Tambahkan ke array, simpan maksimal 5 terakhir
+    komentarList.unshift(komentarBaru);
+    komentarList = komentarList.slice(0, 5); // hanya 5 terakhir
+
+    // Simpan ke localStorage
+    localStorage.setItem('komentarList', JSON.stringify(komentarList));
+
+    // Reset form dan tampilkan komentar baru
+    form.reset();
+    ratingInput.value = 0;
+    updateStars(0);
+    renderKomentar();
   });
 
+  // Fungsi untuk update bintang (agar bintang bersih setelah submit)
   function updateStars(value) {
+    const stars = document.querySelectorAll('#rating-input span');
     stars.forEach((s) => {
       const starValue = parseInt(s.getAttribute('data-value'));
       if (starValue <= value) {
@@ -593,6 +634,9 @@
       }
     });
   }
+
+  // Jalankan saat halaman dimuat
+  renderKomentar();
 </script>
 
 
