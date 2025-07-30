@@ -206,7 +206,7 @@ checkoutForm.addEventListener("submit", (e) => {
   pesan += `\nTotal: Rp ${totalHarga.toLocaleString("id-ID")}`;
 
   // Kirim ke WhatsApp
-  const waLink = `https://wa.me/6285719496510?text=${encodeURIComponent(
+  const waLink = `https://wa.me/6282175021915?text=${encodeURIComponent(
     pesan
   )}`;
   window.open(waLink, "_blank");
